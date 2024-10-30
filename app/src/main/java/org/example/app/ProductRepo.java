@@ -23,6 +23,7 @@ public class ProductRepo {
         properties.put(Environment.USER, "postgres");
         properties.put(Environment.PASS, "password");
         properties.put(Environment.HBM2DDL_AUTO, "update");
+        properties.put(Environment.SHOW_SQL, true);
         properties.put(Environment.URL, "jdbc:postgresql://localhost:5432/postgres");
         sessionFactory = new Configuration().addAnnotatedClass(Product.class)
                 .setProperties(properties).buildSessionFactory();

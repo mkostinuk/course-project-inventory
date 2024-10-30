@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="400.0" prefWidth="300.0">
+    <Label layoutX="100.0" layoutY="10.0" text="Add New Product"/>
+
+    <TextField fx:id="titleField" layoutX="50.0" layoutY="50.0" promptText="Title"/>
+    <TextField fx:id="quantityField" layoutX="50.0" layoutY="90.0" promptText="Quantity"/>
+    <TextField fx:id="priceField" layoutX="50.0" layoutY="130.0" promptText="Price"/>
+    <ComboBox fx:id="categoryComboBox" layoutX="50.0" layoutY="170.0" promptText="Category"/>
+
+    <Button fx:id="saveButton" layoutX="50.0" layoutY="220.0" text="Save"/>
+    <Button fx:id="cancelButton" layoutX="150.0" layoutY="220.0" text="Cancel"/>
+</AnchorPane>
