@@ -15,8 +15,8 @@ import java.util.Properties;
 
 public class ProductRepo {
     private final SessionFactory sessionFactory;
-
-    public ProductRepo() {
+    private static ProductRepo instance;
+    private ProductRepo(){
         Properties properties = new Properties();
         properties.put(Environment.DRIVER, "org.postgresql.Driver");
         properties.put(Environment.DIALECT, "org.hibernate.dialect.PostgreSQLDialect");
@@ -28,6 +28,14 @@ public class ProductRepo {
         sessionFactory = new Configuration().addAnnotatedClass(Product.class)
                 .setProperties(properties).buildSessionFactory();
     }
+
+    public static ProductRepo getInstance() {
+        if(instance==null){
+            instance = new ProductRepo();
+        }
+        return instance;
+    }
+
     public List<Product> getAll(){
         try(Session session = sessionFactory.openSession()){
             Query<Product> query = session.createQuery("from Product", Product.class);
@@ -67,6 +75,7 @@ public class ProductRepo {
             Transaction transaction = session.beginTransaction();
             Product product = getByTitle(title);
             product.setQuantity(product.getQuantity()+quantity);
+            session.merge(product);
             transaction.commit();
         }
     }
@@ -86,4 +95,7 @@ public class ProductRepo {
     }
 
 
+    public boolean existByTitle(String title) {
+        return getByTitle(title) != null;
+    }
 }

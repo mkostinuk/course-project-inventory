@@ -14,8 +14,7 @@
         </font>
     </Label>
 
-    <Button fx:id="addProductButton" layoutX="50.0" layoutY="80.0" onAction="#handleAddProduct" prefWidth="120" text="Add Product" />
-    <Button fx:id="viewInventoryButton" layoutX="200.0" layoutY="80.0" onAction="#handleViewInventory" prefWidth="120" text="View Inventory" />
+    <Button fx:id="addProductButton" layoutX="50.0" layoutY="80.0" prefWidth="120" text="Add Product" />
 
     <TableView fx:id="productTable" layoutX="50.0" layoutY="150.0" prefHeight="200.0" prefWidth="500.0">
         <columns>
@@ -25,4 +24,5 @@
             <TableColumn fx:id="categoryColumn" text="Category" />
         </columns>
     </TableView>
+   <Button fx:id="addExistProductButton" layoutX="182.0" layoutY="80.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="120.0" text="Add exist product" />
 </AnchorPane>
