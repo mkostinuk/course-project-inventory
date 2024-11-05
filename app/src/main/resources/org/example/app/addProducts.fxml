@@ -5,16 +5,19 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="300.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23" fx:controller="org.example.app.controllers.AddProductController">
-    <Label layoutX="100.0" layoutY="10.0" text="Add New Product" />
+<AnchorPane prefHeight="429.0" prefWidth="331.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.app.controllers.AddProductController">
+    <Label layoutX="85.0" layoutY="14.0" text="Add New Product">
+      <font>
+         <Font name="DIN Alternate Bold" size="22.0" />
+      </font></Label>
 
-    <TextField fx:id="titleField" layoutX="50.0" layoutY="50.0" promptText="Title" />
-    <TextField fx:id="quantityField" layoutX="50.0" layoutY="90.0" promptText="Quantity" />
-    <TextField fx:id="priceField" layoutX="50.0" layoutY="130.0" promptText="Price" />
-    <ComboBox fx:id="categoryComboBox" layoutX="50.0" layoutY="170.0" promptText="Category" />
+    <TextField fx:id="titleField" layoutX="86.0" layoutY="122.0" promptText="Title" />
+    <TextField fx:id="quantityField" layoutX="86.0" layoutY="162.0" promptText="Quantity" />
+    <TextField fx:id="priceField" layoutX="86.0" layoutY="202.0" promptText="Price" />
+    <ComboBox fx:id="categoryComboBox" layoutX="90.0" layoutY="246.0" promptText="Category" />
 
-    <Button fx:id="saveButton" layoutX="50.0" layoutY="220.0" text="Save"  />
-    <Button fx:id="cancelButton" layoutX="150.0" layoutY="220.0" text="Cancel" />
-   <Button fx:id="backButton" layoutX="103.0" layoutY="281.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="56.0" text="↩️" />
+    <Button fx:id="saveButton" layoutX="217.0" layoutY="313.0" prefHeight="26.0" prefWidth="79.0" text="Save" />
+   <Button fx:id="backButton" layoutX="34.0" layoutY="313.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="79.0" text="↩️" />
 </AnchorPane>

@@ -8,20 +8,24 @@ import org.example.app.services.AddProductService;
 
 
 public  class AddProductController {
-    @FXML private TextField titleField;
-    @FXML private TextField quantityField;
-    @FXML private TextField priceField;
-    @FXML private ComboBox<ProductCategory> categoryComboBox;
-    @FXML private Button saveButton;
-    @FXML private Button cancelButton;
-    @FXML private Button backButton;
+    @FXML
+    private TextField titleField;
+    @FXML
+    private TextField quantityField;
+    @FXML
+    private TextField priceField;
+    @FXML
+    private ComboBox<ProductCategory> categoryComboBox;
+    @FXML
+    private Button saveButton;
+    @FXML
+    private Button backButton;
     private final AddProductService addProductService = AddProductService.getInstance();
     private final SceneController sceneController = SceneController.getInstance();
     @FXML
     public void initialize() {
         categoryComboBox.getItems().setAll(ProductCategory.values());
         saveButton.setOnAction(this::saveProduct);
-        cancelButton.setOnAction(event -> sceneController.closeWindow());
         backButton.setOnAction(sceneController::switchToMainMenu);
     }
 

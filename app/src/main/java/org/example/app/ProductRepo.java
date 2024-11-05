@@ -11,6 +11,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Properties;
 
 public class ProductRepo {
@@ -42,11 +43,11 @@ public class ProductRepo {
             return query.getResultList();
         }
     }
-    public Product getByTitle(String title){
+    public Optional<Product> getByTitle(String title){
         try(Session session = sessionFactory.openSession()){
             Query<Product> query = session.createQuery("from Product where title = :title", Product.class)
                     .setParameter("title",title);
-            return query.uniqueResult();
+            return Optional.ofNullable(query.uniqueResult());
         }
     }
     public int getCount(){
@@ -73,7 +74,7 @@ public class ProductRepo {
     public void addExistProduct(String title, int quantity){
         try(Session session = sessionFactory.openSession()){
             Transaction transaction = session.beginTransaction();
-            Product product = getByTitle(title);
+            Product product = getByTitle(title).orElseThrow(RuntimeException::new);
             product.setQuantity(product.getQuantity()+quantity);
             session.merge(product);
             transaction.commit();
@@ -96,6 +97,6 @@ public class ProductRepo {
 
 
     public boolean existByTitle(String title) {
-        return getByTitle(title) != null;
+        return getByTitle(title).isPresent();
     }
 }

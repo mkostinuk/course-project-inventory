@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import org.example.app.Main;
@@ -48,6 +49,26 @@ public class SceneController {
             throw new RuntimeException("Failed to load FXML file: " + fxml, e);
         }
     }
+    public void alertChangeProducts(ActionEvent event) {
+        alertScene("changeProduct.fxml", "Change product");
+    }
+
+    public void alertScene(String fxml, String title) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(fxml));
+            Parent root = fxmlLoader.load();
+            Stage window = new Stage();
+            window.initModality(Modality.APPLICATION_MODAL);
+            window.setTitle(title);
+            window.setScene(new Scene(root));
+
+            window.showAndWait();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
     public void closeWindow() {
         stage = (Stage) stage.getScene().getWindow();
         stage.close();
@@ -55,5 +76,9 @@ public class SceneController {
 
     public void switchToAddExistProducts(ActionEvent event) {
         loadScene("addExistProduct.fxml", "Add Exist Product", event);
+    }
+
+    public void switchToEditMenu(ActionEvent event) {
+        loadScene("edit.fxml", "Edit Menu", event);
     }
 }

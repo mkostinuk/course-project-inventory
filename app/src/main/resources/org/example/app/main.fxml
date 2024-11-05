@@ -8,13 +8,16 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.app.controllers.MainMenuController">
-    <Label layoutX="148.0" layoutY="23.0" text="Inventory Management">
+    <Label layoutX="156.0" layoutY="23.0" text="Inventory Management">
         <font>
-        <Font name="Arial Bold" size="28.0" />
+        <Font name="DIN Alternate Bold" size="28.0" />
         </font>
     </Label>
 
-    <Button fx:id="addProductButton" layoutX="50.0" layoutY="80.0" prefWidth="120" text="Add Product" />
+    <Button fx:id="addProductButton" layoutX="62.0" layoutY="93.0" prefWidth="120" text="Add Product">
+      <font>
+         <Font name="DIN Alternate Bold" size="13.0" />
+      </font></Button>
 
     <TableView fx:id="productTable" layoutX="50.0" layoutY="150.0" prefHeight="200.0" prefWidth="500.0">
         <columns>
@@ -24,5 +27,12 @@
             <TableColumn fx:id="categoryColumn" text="Category" />
         </columns>
     </TableView>
-   <Button fx:id="addExistProductButton" layoutX="182.0" layoutY="80.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="120.0" text="Add exist product" />
+   <Button fx:id="addExistProductButton" layoutX="231.0" layoutY="93.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="120.0" text="Add exist product">
+      <font>
+         <Font name="DIN Alternate Bold" size="13.0" />
+      </font></Button>
+   <Button fx:id="buttonEditProduct" layoutX="393.0" layoutY="93.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="120.0" text="Edit Product">
+      <font>
+         <Font name="DIN Alternate Bold" size="13.0" />
+      </font></Button>
 </AnchorPane>

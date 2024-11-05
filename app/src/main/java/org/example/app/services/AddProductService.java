@@ -9,11 +9,11 @@ import org.example.app.model.ProductCategory;
 import java.util.List;
 
 public class AddProductService {
-    private final ProductRepo repo = ProductRepo.getInstance();
+    private final ProductRepo repo;
     private static AddProductService instance;
 
     private AddProductService(){
-
+        repo = ProductRepo.getInstance();
     }
     public static AddProductService getInstance(){
         if(instance == null){
@@ -23,25 +23,39 @@ public class AddProductService {
     }
 
     public void saveNewProduct(String title, String quantity, String price, ProductCategory category) {
-        if (areBlankFields(title, quantity, price, category) ||
+        if (
+                areBlankFields(title, quantity, price, category) ||
                 areNonNumericFields(quantity, price) ||
                 areNegativeFields(quantity, price) ||
                 areBlankFields(title, quantity, price, category)||
-                repo.existByTitle(title)){
-            return;
+                repo.existByTitle(title.toLowerCase())
+        ){
+                return;
         }
 
-        repo.addNewProduct(new Product(title, Integer.parseInt(quantity), Double.parseDouble(price), category));
+        repo.addNewProduct(new Product(
+                title.toLowerCase(),
+                Integer.parseInt(quantity),
+                Double.parseDouble(price),
+                category
+        ));
     }
     public void saveExistProduct(String title, String quantity) {
-        if (areBlankFields(title, quantity) ||
+        if (
+                !repo.existByTitle(title) ||
+                areBlankFields(title, quantity) ||
                 isNotNumericField(quantity, "Quantity") ||
-                isNegativeField(quantity, "Quantity")){
-            return;
+                isNegativeField(quantity, "Quantity")
+        ){
+                return;
         }
         repo.addExistProduct(title, Integer.parseInt(quantity));
     }
     public List<String> productTitles(){
+        if(repo.getAll().isEmpty()){
+            showErrorMessage("No products found.");
+            return null;
+        }
         return repo.getAll().stream().map(Product::getTitle).toList();
     }
 

@@ -12,6 +12,8 @@ public class MainMenuController {
     @FXML
     public Button addExistProductButton;
     @FXML
+    public Button buttonEditProduct;
+    @FXML
     private TableView<Product> productTable;
     @FXML
     private TableColumn<Product, String> productColumn;
@@ -34,6 +36,7 @@ public class MainMenuController {
         addProductButton.setOnAction(event -> SceneController.getInstance().switchToAddProducts(event));
         addExistProductButton.setOnAction(event -> SceneController.getInstance().switchToAddExistProducts(event) );
         productTable.setItems(service.getProducts());
+        buttonEditProduct.setOnAction(event -> SceneController.getInstance().switchToEditMenu(event));
     }
 
 
