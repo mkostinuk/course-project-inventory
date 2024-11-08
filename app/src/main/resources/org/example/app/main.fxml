@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -14,25 +15,32 @@
         </font>
     </Label>
 
-    <Button fx:id="addProductButton" layoutX="62.0" layoutY="93.0" prefWidth="120" text="Add Product">
-      <font>
-         <Font name="DIN Alternate Bold" size="13.0" />
-      </font></Button>
-
-    <TableView fx:id="productTable" layoutX="50.0" layoutY="150.0" prefHeight="200.0" prefWidth="500.0">
+    <TableView fx:id="productTable" layoutX="50.0" layoutY="186.0" prefHeight="200.0" prefWidth="500.0">
         <columns>
-            <TableColumn fx:id="productColumn" text="Product" />
-            <TableColumn fx:id="quantityColumn" text="Quantity" />
-            <TableColumn fx:id="priceColumn" text="Price" />
-            <TableColumn fx:id="categoryColumn" text="Category" />
+            <TableColumn fx:id="titleColumn" prefWidth="134.0" text="Title" />
+            <TableColumn fx:id="quantityColumn" prefWidth="71.0" text="Quantity" />
+            <TableColumn fx:id="priceColumn" prefWidth="150.0" text="Price" />
+            <TableColumn fx:id="categoryColumn" prefWidth="144.0" text="Category" />
         </columns>
     </TableView>
-   <Button fx:id="addExistProductButton" layoutX="231.0" layoutY="93.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="120.0" text="Add exist product">
+   <Button fx:id="editProductButton" layoutX="426.0" layoutY="97.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="120.0" text="Edit Product">
       <font>
          <Font name="DIN Alternate Bold" size="13.0" />
       </font></Button>
-   <Button fx:id="buttonEditProduct" layoutX="393.0" layoutY="93.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="120.0" text="Edit Product">
+   <Button fx:id="sendGoodsButton" layoutX="231.0" layoutY="97.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="120.0" text="Send the goods">
       <font>
          <Font name="DIN Alternate Bold" size="13.0" />
-      </font></Button>
+      </font>
+   </Button>
+   <Button fx:id="reportButton" layoutX="231.0" layoutY="145.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="120.0" text="Get a report">
+      <font>
+         <Font name="DIN Alternate Bold" size="13.0" />
+      </font>
+   </Button>
+   <Button fx:id="addGoodsButton" layoutX="50.0" layoutY="97.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="120.0" text="Add Goods">
+      <font>
+         <Font name="DIN Alternate Bold" size="13.0" />
+      </font>
+   </Button>
+   <TextArea fx:id="textAccount" layoutX="14.0" layoutY="14.0" prefHeight="61.0" prefWidth="108.0" />
 </AnchorPane>

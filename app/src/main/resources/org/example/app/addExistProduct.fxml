@@ -14,6 +14,6 @@
       </font></Label>
     <TextField fx:id="quantityField" layoutX="85.0" layoutY="138.0" promptText="Quantity" />
     <ComboBox fx:id="productNameComboBox" layoutX="85.0" layoutY="202.0" prefHeight="26.0" prefWidth="160.0" promptText="Product name" />
-    <Button fx:id="backButton" layoutX="34.0" layoutY="313.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="79.0" text="↩️" />
-    <Button fx:id="saveButton" layoutX="217.0" layoutY="313.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="79.0" text="Save" />
+    <Button fx:id="cancel" layoutX="34.0" layoutY="313.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="79.0" text="cancel" />
+    <Button fx:id="addButton" layoutX="217.0" layoutY="313.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="79.0" text="Add to List" />
 </AnchorPane>

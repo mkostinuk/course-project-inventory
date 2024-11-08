@@ -12,15 +12,15 @@ import org.example.app.services.UpdateProductsService;
 
 public class UpdateProductsController {
     @FXML
-    public TextField fieldTitle;
+    private TextField fieldTitle;
     @FXML
-    public TextField fieldPrice;
+    private TextField fieldPrice;
     @FXML
-    public Button backButton;
+    private Button backButton;
     @FXML
-    public Button backToMainButton;
+    private Button backToMainButton;
     @FXML
-    public Button updateButton;
+    private Button updateButton;
     @FXML
     private ComboBox<ProductCategory> categoryComboBox;
     @FXML
@@ -50,7 +50,7 @@ public class UpdateProductsController {
             SceneController.getInstance().switchToMainMenu(event);
 
         });
-        updateButton.setOnAction(event -> service.updateProduct(productTitle));
+        updateButton.setOnAction(event -> service.updateProduct(productTitle, fieldTitle.getText(), Integer.parseInt(fieldPrice.getText())));
     }
 
 

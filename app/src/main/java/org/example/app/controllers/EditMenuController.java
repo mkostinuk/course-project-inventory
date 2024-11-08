@@ -4,14 +4,16 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import org.example.app.services.EditProductService;
 
 public class EditMenuController {
     @FXML
-    public TextField setUpTextField;
+    private TextField setUpTextField;
     @FXML
-    public Button backButton;
+    private Button backButton;
     @FXML
     private Button buttonSetUp;
+    private final EditProductService editProductService = EditProductService.getInstance();
 
     @FXML
     public void initialize() {
@@ -19,8 +21,8 @@ public class EditMenuController {
         backButton.setOnAction(SceneController.getInstance()::switchToMainMenu);
     }
 
-    public void setUp(ActionEvent event) {
-        UpdateProductsController.productTitle = setUpTextField.getText();
-        SceneController.getInstance().alertChangeProducts(event);
+    private void setUp(ActionEvent event) {
+        editProductService.transferToUpdateController(setUpTextField.getText());
+        SceneController.getInstance().alertChangeProducts();
     }
 }

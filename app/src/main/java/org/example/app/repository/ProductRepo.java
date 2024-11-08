@@ -1,4 +1,4 @@
-package org.example.app;
+package org.example.app.repository;
 
 
 import org.example.app.model.ProductCategory;
@@ -6,29 +6,15 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.example.app.model.Product;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.cfg.Environment;
+
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Properties;
+import java.util.UUID;
 
-public class ProductRepo {
-    private final SessionFactory sessionFactory;
+public class ProductRepo extends Repository<Product> {
     private static ProductRepo instance;
-    private ProductRepo(){
-        Properties properties = new Properties();
-        properties.put(Environment.DRIVER, "org.postgresql.Driver");
-        properties.put(Environment.DIALECT, "org.hibernate.dialect.PostgreSQLDialect");
-        properties.put(Environment.USER, "postgres");
-        properties.put(Environment.PASS, "password");
-        properties.put(Environment.HBM2DDL_AUTO, "update");
-        properties.put(Environment.SHOW_SQL, true);
-        properties.put(Environment.URL, "jdbc:postgresql://localhost:5432/postgres");
-        sessionFactory = new Configuration().addAnnotatedClass(Product.class)
-                .setProperties(properties).buildSessionFactory();
-    }
+
 
     public static ProductRepo getInstance() {
         if(instance==null){
@@ -36,7 +22,11 @@ public class ProductRepo {
         }
         return instance;
     }
-
+    public Optional<Product> findById(UUID id){
+        try(Session session = sessionFactory.openSession()){
+            return Optional.ofNullable(session.get(Product.class, id));
+        }
+    }
     public List<Product> getAll(){
         try(Session session = sessionFactory.openSession()){
             Query<Product> query = session.createQuery("from Product", Product.class);
@@ -64,14 +54,14 @@ public class ProductRepo {
             return query.uniqueResult();
         }
     }
-    public void addNewProduct(Product product){
+    public void save(Product product){
         try(Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
             session.persist(product);
             transaction.commit();
         }
     }
-    public void addExistProduct(String title, int quantity){
+    public void saveExist(String title, int quantity){
         try(Session session = sessionFactory.openSession()){
             Transaction transaction = session.beginTransaction();
             Product product = getByTitle(title).orElseThrow(RuntimeException::new);

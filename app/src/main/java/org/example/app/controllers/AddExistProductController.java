@@ -1,36 +1,41 @@
 package org.example.app.controllers;
 
 import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import org.example.app.services.AddProductService;
 
+import java.util.List;
+
 public class AddExistProductController {
     @FXML
-    public TextField quantityField;
+    private Button addButton;
     @FXML
-    public ComboBox<String> productNameComboBox;
+    private Button cancel;
     @FXML
-    public Button backButton;
+    private TextField quantityField;
     @FXML
-    public Button saveButton;
+    private ComboBox<String> productNameComboBox;
     private final AddProductService service = AddProductService.getInstance();
     private final SceneController sceneController = SceneController.getInstance();
     @FXML
     public void initialize() {
-        productNameComboBox.setItems(FXCollections.observableArrayList(service.productTitles()));
-        saveButton.setOnAction(this::saveExist);
-        backButton.setOnAction(sceneController::switchToMainMenu);
-    }
-    public void saveExist(ActionEvent event){
-        service.saveExistProduct(
-                productNameComboBox.getValue(),
-                quantityField.getText()
-        );
-        sceneController.switchToMainMenu(event);
+        List<String> allProducts = service.productTitles();
+        List<String> availableProducts = allProducts.stream()
+                .filter(productName -> ExportController.getProducts()
+                        .stream()
+                        .noneMatch(product -> product.getTitle().equals(productName)))
+                .toList();
+        productNameComboBox.setItems(FXCollections.observableArrayList(availableProducts));
+        addButton.setOnAction(event -> {
+            service.addToExportTable(event, productNameComboBox.getValue(), quantityField.getText());
+            sceneController.closeAlertScene(event);
+        });
 
     }
-}
+
+
+    }
+

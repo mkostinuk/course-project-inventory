@@ -34,5 +34,7 @@
         }
 
 
-
+        public double getTotalPrice() {
+            return (quantity * price);
+        }
     }

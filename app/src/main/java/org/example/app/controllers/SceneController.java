@@ -49,8 +49,11 @@ public class SceneController {
             throw new RuntimeException("Failed to load FXML file: " + fxml, e);
         }
     }
-    public void alertChangeProducts(ActionEvent event) {
+    public void alertChangeProducts() {
         alertScene("changeProduct.fxml", "Change product");
+    }
+    public void alertAddExistProducts(){
+        alertScene("addExistProduct.fxml", "Add Exist Product");
     }
 
     public void alertScene(String fxml, String title) {
@@ -73,6 +76,10 @@ public class SceneController {
         stage = (Stage) stage.getScene().getWindow();
         stage.close();
     }
+    public void closeAlertScene(ActionEvent event) {
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.close();
+    }
 
     public void switchToAddExistProducts(ActionEvent event) {
         loadScene("addExistProduct.fxml", "Add Exist Product", event);
@@ -80,5 +87,13 @@ public class SceneController {
 
     public void switchToEditMenu(ActionEvent event) {
         loadScene("edit.fxml", "Edit Menu", event);
+    }
+
+    public void switchToImportMenu(ActionEvent event) {
+        loadScene("importProducts.fxml", "Import Menu", event);
+    }
+
+    public void switchToExportMenu(ActionEvent event) {
+        loadScene("exportProducts.fxml", "Export Menu", event);
     }
 }

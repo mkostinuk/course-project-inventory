@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="389.0" prefWidth="587.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1">
+    <Label layoutX="56.0" layoutY="14.0" text="Import Products">
+        <font>
+          <Font name="DIN Alternate Bold" size="22.0" />
+        </font>
+    </Label>
+    <TextField fx:id="supplierField" layoutX="37.0" layoutY="95.0" prefHeight="26.0" prefWidth="186.0" promptText="Supplier" />
+    <DatePicker fx:id="datePicker" layoutX="37.0" layoutY="153.0" promptText="date of deal" />
+    <TableView fx:id="productTable" layoutX="276.0" layoutY="27.0" prefHeight="303.0" prefWidth="297.0">
+        <columns>
+          <TableColumn fx:id="titleColumn" prefWidth="75.0" text="Title" />
+          <TableColumn fx:id="categoryColumn" prefWidth="75.0" text="Category" />
+          <TableColumn fx:id="quantityColumn" prefWidth="68.0" text="Quantity" />
+          <TableColumn fx:id="priceColumn" prefWidth="82.0" text="Price" />
+        </columns>
+    </TableView>
+    <Button fx:id="addButton" layoutX="162.0" layoutY="215.0" mnemonicParsing="false" onAction="#handleAddButton" text="add good" />
+    <Button fx:id="clearButton" layoutX="37.0" layoutY="216.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="77.0" text="clear table " />
+    <Button fx:id="sendButton" layoutX="103.0" layoutY="305.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="69.0" text="Send" />
+   <TextField fx:id="sumField" layoutX="344.0" layoutY="333.0" />
+</AnchorPane>

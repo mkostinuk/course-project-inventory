@@ -1,8 +1,10 @@
 package org.example.app.services;
 
+import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import org.apache.commons.lang3.StringUtils;
-import org.example.app.ProductRepo;
+import org.example.app.repository.ProductRepo;
+import org.example.app.controllers.ExportController;
 import org.example.app.model.Product;
 import org.example.app.model.ProductCategory;
 
@@ -27,13 +29,11 @@ public class AddProductService {
                 areBlankFields(title, quantity, price, category) ||
                 areNonNumericFields(quantity, price) ||
                 areNegativeFields(quantity, price) ||
-                areBlankFields(title, quantity, price, category)||
-                repo.existByTitle(title.toLowerCase())
+                existByTitle(title)
         ){
                 return;
         }
-
-        repo.addNewProduct(new Product(
+        repo.save(new Product(
                 title.toLowerCase(),
                 Integer.parseInt(quantity),
                 Double.parseDouble(price),
@@ -42,14 +42,14 @@ public class AddProductService {
     }
     public void saveExistProduct(String title, String quantity) {
         if (
-                !repo.existByTitle(title) ||
+                doesNotExistByTitle(title) ||
                 areBlankFields(title, quantity) ||
                 isNotNumericField(quantity, "Quantity") ||
                 isNegativeField(quantity, "Quantity")
         ){
                 return;
         }
-        repo.addExistProduct(title, Integer.parseInt(quantity));
+        repo.saveExist(title, Integer.parseInt(quantity));
     }
     public List<String> productTitles(){
         if(repo.getAll().isEmpty()){
@@ -109,4 +109,66 @@ public class AddProductService {
         alert.setContentText(message);
         alert.show();
     }
+    private boolean existByTitle(String title){
+        if(repo.existByTitle(title)){
+            showErrorMessage("Product already exists.");
+            return true;
+        }
+        return false;
+    }
+   private boolean doesNotExistByTitle(String title){
+        if(!repo.existByTitle(title)){
+            showErrorMessage("Product does not exist.");
+            return true;
+        }
+        return false;
+    }
+    private Product getProductByTitle(String title){
+        if(!repo.existByTitle(title)){
+            showErrorMessage("Product does not exist.");
+            return null;
+        }
+        return repo.getByTitle(title).orElseThrow();
+    }
+    public void addToTable(ActionEvent event, String productTitle, String quantity){
+        if(
+                isNotNumericField(quantity, "Quantity") ||
+                isNegativeField(quantity, "Quantity")
+        ){
+            return;
+        }
+        Product product = getProductByTitle(productTitle);
+        if(product == null){
+            return;
+        }
+        product.setQuantity(Integer.parseInt(quantity));
+        ExportController.addProduct(product); //FIXME
+
+    }
+    public void addToExportTable(ActionEvent event, String productTitle, String quantity){
+        if(
+                isNotNumericField(quantity, "Quantity") ||
+                isNegativeField(quantity, "Quantity")
+        ){
+            return;
+        }
+        Product product = getProductByTitle(productTitle);
+        int numericQuantity = Integer.parseInt(quantity);
+        if(isToBigQuantity(product, numericQuantity)){
+            return;
+        }
+        product.setQuantity(numericQuantity);
+        ExportController.addProduct(product);
+
+
+    }
+
+    private boolean isToBigQuantity(Product product, int quantity) {
+        if(product.getQuantity() < quantity){
+            showErrorMessage("Quantity is too big.");
+            return true;
+        }
+        return false;
+    }
+
 }

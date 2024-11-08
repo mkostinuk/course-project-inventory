@@ -1,12 +1,12 @@
 package org.example.app.services;
 
 import javafx.scene.control.Alert;
-import org.example.app.ProductRepo;
+import org.example.app.repository.ProductRepo;
 import org.example.app.model.Product;
 
 public class UpdateProductsService {
     private final ProductRepo repo;
-    public static  UpdateProductsService instance;
+    public static UpdateProductsService instance;
 
 
     private UpdateProductsService() {
@@ -32,7 +32,15 @@ public class UpdateProductsService {
 
     }
 
-    public void updateProduct(String productTitle) {
-        repo.update(getProduct(productTitle));
+    public void updateProduct(String productTitle, String newTitle, int newPrice) {
+        repo.getByTitle(productTitle).ifPresentOrElse(product -> {
+            product.setTitle(newTitle);
+            product.setPrice(newPrice);
+            repo.update(product);
+        }, () -> {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Product not found.");
+            alert.show();
+        });
     }
 }
