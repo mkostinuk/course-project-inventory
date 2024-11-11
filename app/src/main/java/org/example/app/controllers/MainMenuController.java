@@ -4,11 +4,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.example.app.model.Product;
+import org.example.app.services.AccountService;
 import org.example.app.services.MainMenuService;
 
 public class MainMenuController {
     @FXML
-    private TextArea textAccount;
+    public Label accountLabel;
     @FXML
     private Button addGoodsButton;
     @FXML
@@ -27,13 +28,15 @@ public class MainMenuController {
     private TableColumn<Product, Double> priceColumn;
     @FXML
     private TableColumn<Product, String> categoryColumn;
+    private static double money = AccountService.loadBalance();
 
     private final MainMenuService service = MainMenuService.getInstance();
     private final SceneController sceneController = SceneController.getInstance();
     @FXML
     public void initialize() {
-       addGoodsButton.setOnAction(sceneController::switchToImportMenu);
-//       reportButton.setOnAction(sceneController::switchToReportMenu); TODO
+        double productMoney = service.allProductMoney();
+        addGoodsButton.setOnAction(sceneController::switchToImportMenu);
+        reportButton.setOnAction(sceneController::alertReportMenu);
         sendGoodsButton.setOnAction(sceneController::switchToExportMenu);
         editProductButton.setOnAction(sceneController::switchToEditMenu);
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
@@ -41,8 +44,15 @@ public class MainMenuController {
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
         categoryColumn.setCellValueFactory(new PropertyValueFactory<>("category"));
         productTable.setItems(service.getProducts());
-        textAccount.setText(String.format("Money: %d \n Product Money: %,.2f ", 0, service.allProductMoney()));
+        accountLabel.setText(String.format("Money: \n %,.2f \n Product Money: \n %,.2f ", money, productMoney));
     }
-
+    public static void increaseMoney(double money){
+        MainMenuController.money += money;
+        AccountService.saveBalance(MainMenuController.money);
+    }
+    public static void decreaseMoney(double money){
+        MainMenuController.money -= money;
+        AccountService.saveBalance(MainMenuController.money);
+    }
 
 }

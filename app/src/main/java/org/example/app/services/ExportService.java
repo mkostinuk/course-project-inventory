@@ -1,15 +1,14 @@
 package org.example.app.services;
 
+import javafx.collections.ObservableList;
+import org.example.app.controllers.MainMenuController;
 import org.example.app.model.ExportProduct;
 import org.example.app.model.Product;
-import org.example.app.repository.ProductRepo;
 
 import java.time.LocalDate;
-import java.util.List;
 
-public class ExportService {
+public class ExportService extends OperationService {
     private static ExportService instance;
-    private ProductRepo productRepo = ProductRepo.getInstance();
 
     private ExportService(){
 
@@ -20,26 +19,33 @@ public class ExportService {
         }
         return instance;
     }
-    public void makeDeal(String customer, LocalDate date, List<Product> products, double sum) {
+    @Override
+    public void makeDeal(String customer, LocalDate date, ObservableList<Product> products, double sum) {
+        if(isCartEmpty(products)){
+            return;
+        }
         ExportProduct exportProduct = new ExportProduct(sum, products, date);
         exportProduct.setCustomer(customer);
         updateProductStock(products);
+        MainMenuController.increaseMoney(sum);
         ReportGenerator.writeExport(exportProduct);
     }
-    private void updateProductStock(List<Product> soldProducts) {
+    @Override
+    protected void updateProductStock(ObservableList<Product> soldProducts) {
         for (Product soldProduct : soldProducts) {
-            Product productInStock = productRepo.getByTitle(soldProduct.getTitle()).orElse(null);
-
+            Product productInStock = repo.getByTitle(soldProduct.getTitle()).orElse(null);
             if (productInStock != null) {
                 int remainingQuantity = productInStock.getQuantity() - soldProduct.getQuantity();
 
                 if (remainingQuantity > 0) {
                     productInStock.setQuantity(remainingQuantity);
-                    productRepo.update(productInStock);
+                    repo.update(productInStock);
                 } else {
-                    productRepo.delete(productInStock);
+                   repo.delete(productInStock);
                 }
             }
         }
     }
+
+
 }

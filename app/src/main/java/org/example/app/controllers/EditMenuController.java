@@ -22,7 +22,6 @@ public class EditMenuController {
     }
 
     private void setUp(ActionEvent event) {
-        editProductService.transferToUpdateController(setUpTextField.getText());
-        SceneController.getInstance().alertChangeProducts();
+        editProductService.transferToUpdateControllerAndChangeScene(setUpTextField.getText());
     }
 }

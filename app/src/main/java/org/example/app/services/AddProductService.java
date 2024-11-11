@@ -3,6 +3,7 @@ package org.example.app.services;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import org.apache.commons.lang3.StringUtils;
+import org.example.app.controllers.ImportController;
 import org.example.app.repository.ProductRepo;
 import org.example.app.controllers.ExportController;
 import org.example.app.model.Product;
@@ -154,6 +155,7 @@ public class AddProductService {
         }
         Product product = getProductByTitle(productTitle);
         int numericQuantity = Integer.parseInt(quantity);
+        assert product != null;
         if(isToBigQuantity(product, numericQuantity)){
             return;
         }
@@ -171,4 +173,24 @@ public class AddProductService {
         return false;
     }
 
+    public void addToImportTable(String productTitle, String quantity, String price, ProductCategory category) {
+        if(
+                areBlankFields(productTitle, quantity, price, category) ||
+                areNonNumericFields(quantity, price) ||
+                areNegativeFields(quantity, price)
+        ){
+            return;
+        }
+            Product product = new Product(
+                    productTitle.toLowerCase(),
+                    Integer.parseInt(quantity),
+                    Double.parseDouble(price),
+                    category
+            );
+        if(AccountService.loadBalance() < product.getTotalPrice()){
+            showErrorMessage("Not enough money.");
+            return;
+        }
+        ImportController.addProduct(product);
+    }
 }

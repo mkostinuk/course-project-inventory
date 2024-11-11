@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import lombok.Setter;
 import org.example.app.model.Product;
 import org.example.app.model.ProductCategory;
 import org.example.app.services.UpdateProductsService;
@@ -12,9 +13,11 @@ import org.example.app.services.UpdateProductsService;
 
 public class UpdateProductsController {
     @FXML
-    private TextField fieldTitle;
+    private TableColumn<Product,Integer> quantityColumn;
     @FXML
-    private TextField fieldPrice;
+    private TextField titleField;
+    @FXML
+    private TextField priceField;
     @FXML
     private Button backButton;
     @FXML
@@ -26,34 +29,39 @@ public class UpdateProductsController {
     @FXML
     private TableView<Product> productTable;
     @FXML
-    private TableColumn<Product, String> columnTitle;
+    private TableColumn<Product, String> titleColumn;
     @FXML
-    private TableColumn<Product, Integer> columnPrice;
+    private TableColumn<Product, Integer> priceColumn;
     @FXML
-    private TableColumn<Product, ProductCategory> columnCategory;
-    public static String productTitle;
+    private TableColumn<Product, String> categoryColumn;
+    @Setter
+    private static String productTitle;
     private final UpdateProductsService service = UpdateProductsService.getInstance();
+    private final SceneController sceneController = SceneController.getInstance();
     @FXML
     public void initialize() {
         categoryComboBox.setItems(FXCollections.observableArrayList(ProductCategory.values()));
-        columnTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
-        columnPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
-        columnCategory.setCellValueFactory(new PropertyValueFactory<>("category"));
+        titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+        priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
+        categoryColumn.setCellValueFactory(new PropertyValueFactory<>("category"));
+        quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
         productTable.setItems(FXCollections.observableArrayList(service.getProduct(productTitle)));
         backButton.setOnAction(event ->{
-            SceneController.getInstance().closeWindow();
-            SceneController.getInstance().switchToEditMenu(event);
-
+            sceneController.closeWindow();
+            sceneController.switchToEditMenu(event);
         });
         backToMainButton.setOnAction(event -> {
-            SceneController.getInstance().closeWindow();
-            SceneController.getInstance().switchToMainMenu(event);
+            sceneController.closeWindow();
+            sceneController.switchToMainMenu(event);
 
         });
-        updateButton.setOnAction(event -> service.updateProduct(productTitle, fieldTitle.getText(), Integer.parseInt(fieldPrice.getText())));
+        updateButton.setOnAction(event -> {
+            service.updateProduct(productTitle, titleField.getText(), Integer.parseInt(priceField.getText()));
+            sceneController.closeWindow();
+            sceneController.switchToMainMenu(event);
+
+        });
     }
-
-
 
 
 }

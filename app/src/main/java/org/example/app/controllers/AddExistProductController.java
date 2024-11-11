@@ -32,6 +32,7 @@ public class AddExistProductController {
         addButton.setOnAction(event -> {
             service.addToExportTable(event, productNameComboBox.getValue(), quantityField.getText());
             sceneController.closeAlertScene(event);
+            cancel.setOnAction(sceneController::closeAlertScene);
         });
 
     }

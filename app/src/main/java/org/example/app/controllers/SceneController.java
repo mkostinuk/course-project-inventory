@@ -96,4 +96,12 @@ public class SceneController {
     public void switchToExportMenu(ActionEvent event) {
         loadScene("exportProducts.fxml", "Export Menu", event);
     }
+
+    public void alertAddProducts() {
+        alertScene("addProducts.fxml", "Add Product");
+    }
+
+    public void alertReportMenu(ActionEvent event) {
+        alertScene("report.fxml", "Report Menu");
+    }
 }

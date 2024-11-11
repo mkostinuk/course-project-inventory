@@ -34,6 +34,7 @@ public class UpdateProductsService {
 
     public void updateProduct(String productTitle, String newTitle, int newPrice) {
         repo.getByTitle(productTitle).ifPresentOrElse(product -> {
+            repo.delete(product);
             product.setTitle(newTitle);
             product.setPrice(newPrice);
             repo.update(product);
