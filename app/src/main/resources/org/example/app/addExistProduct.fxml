@@ -5,25 +5,11 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="429.0" prefWidth="331.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.app.controllers.AddExistProductController"
-            style="-fx-background-color: linear-gradient(to bottom, #e1f5fe, #81d4fa); -fx-padding: 20;">
-
-    <Label layoutX="84.0" layoutY="14.0" text="Add Exist Product">
-        <font>
-            <Font name="DIN Alternate Bold" size="22.0" />
-        </font>
-    </Label>
-
-    <TextField fx:id="quantityField" layoutX="85.0" layoutY="138.0" promptText="Quantity"
-               style="-fx-background-color: #ffffff; -fx-border-color: #81d4fa; -fx-border-radius: 5; -fx-padding: 5;" />
-
-    <ComboBox fx:id="productNameComboBox" layoutX="85.0" layoutY="202.0" prefHeight="26.0" prefWidth="160.0" promptText="Product name"
-              style="-fx-background-color: #ffffff; -fx-border-color: #81d4fa; -fx-border-radius: 5; -fx-padding: 5;" />
-
-    <Button fx:id="cancel" layoutX="34.0" layoutY="313.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="79.0" text="Cancel"
-            style="-fx-background-color: linear-gradient(to right, #ff8a65, #ff7043); -fx-text-fill: #ffffff; -fx-background-radius: 10; -fx-border-radius: 10;" />
-    <Button fx:id="addButton" layoutX="217.0" layoutY="313.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="79.0" text="Add to List"
-            style="-fx-background-color: linear-gradient(to right, #64b5f6, #42a5f5); -fx-text-fill: #ffffff; -fx-background-radius: 10; -fx-border-radius: 10;" />
+<AnchorPane prefHeight="429.0" prefWidth="331.0" style="-fx-padding: 20;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.app.controllers.AddExistProductController">
+    <Label layoutX="84.0" layoutY="14.0" style="-fx-font-size: 20; -fx-font-weight: bold;" text="Add Exist Product" />
+    <TextField fx:id="quantityField" layoutX="85.0" layoutY="138.0" promptText="Quantity" style="-fx-font-size: 14;" />
+    <ComboBox fx:id="productNameComboBox" layoutX="85.0" layoutY="202.0" prefHeight="27.0" prefWidth="172.0" promptText="Product name" style="-fx-font-size: 14;" />
+    <Button fx:id="cancel" layoutX="34.0" layoutY="313.0" prefHeight="26.0" prefWidth="76.0" style="-fx-background-color: #f44336; -fx-text-fill: white;" text="Cancel" />
+    <Button fx:id="addButton" layoutX="217.0" layoutY="313.0" prefHeight="26.0" prefWidth="76.0" style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="Add to List" />
 </AnchorPane>

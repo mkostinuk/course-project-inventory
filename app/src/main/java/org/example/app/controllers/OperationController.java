@@ -21,8 +21,6 @@ public abstract class OperationController {
     @FXML
     private Button backButton;
     @FXML
-    private Label sumLabel;
-    @FXML
     private TableColumn<Product, String> titleColumn;
     @FXML
     private TableColumn<Product, String> categoryColumn;
@@ -52,11 +50,6 @@ public abstract class OperationController {
         });
         backButton.setOnAction(sceneController::switchToMainMenu);
         addButton.setOnAction(this::alertAddScene);
-        updateSum();
-    }
-    protected void updateSum() {
-        double sum = products.stream().mapToDouble(Product::getPrice).sum();
-        sumLabel.setText("sum : " + sum);
     }
     protected void clearTable(){
         products.clear();
