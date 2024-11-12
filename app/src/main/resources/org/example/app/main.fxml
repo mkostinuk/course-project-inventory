@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #f7f7f7;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.app.controllers.MainMenuController">
+
+    <Label layoutX="156.0" layoutY="23.0" style="-fx-text-fill: #333333;" text="Inventory Management">
+        <font>
+            <Font name="DIN Alternate Bold" size="28.0" />
+        </font>
+    </Label>
+
+    <TableView fx:id="productTable" layoutX="50.0" layoutY="186.0" prefHeight="200.0" prefWidth="500.0" style="-fx-background-color: #ffffff; -fx-border-color: #cccccc;">
+        <columns>
+            <TableColumn fx:id="titleColumn" prefWidth="134.0" style="-fx-background-color: #eeeeee; -fx-text-fill: #333333;" text="Title" />
+            <TableColumn fx:id="quantityColumn" prefWidth="71.0" style="-fx-background-color: #eeeeee; -fx-text-fill: #333333;" text="Quantity" />
+            <TableColumn fx:id="priceColumn" prefWidth="150.0" style="-fx-background-color: #eeeeee; -fx-text-fill: #333333;" text="Price" />
+            <TableColumn fx:id="categoryColumn" prefWidth="144.0" style="-fx-background-color: #eeeeee; -fx-text-fill: #333333;" text="Category" />
+        </columns>
+    </TableView>
+
+    <Button fx:id="editProductButton" layoutX="426.0" layoutY="97.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="120.0" style="-fx-background-color: #4CAF50; -fx-text-fill: #ffffff; -fx-background-radius: 10; -fx-border-radius: 10;" text="Edit Product">
+        <font>
+            <Font name="DIN Alternate Bold" size="13.0" />
+        </font>
+    </Button>
+
+    <Button fx:id="sendGoodsButton" layoutX="231.0" layoutY="97.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="120.0" style="-fx-background-color: #FF8A65; -fx-text-fill: #ffffff; -fx-background-radius: 10; -fx-border-radius: 10;" text="Send Goods">
+        <font>
+            <Font name="DIN Alternate Bold" size="13.0" />
+        </font>
+    </Button>
+
+    <Button fx:id="reportButton" layoutX="231.0" layoutY="145.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="120.0" style="-fx-background-color: #42A5F5; -fx-text-fill: #ffffff; -fx-background-radius: 10; -fx-border-radius: 10;" text="Get Report">
+        <font>
+            <Font name="DIN Alternate Bold" size="13.0" />
+        </font>
+    </Button>
+
+    <Button fx:id="addGoodsButton" layoutX="50.0" layoutY="97.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="120.0" style="-fx-background-color: #FFCA28; -fx-text-fill: #ffffff; -fx-background-radius: 10; -fx-border-radius: 10;" text="Add Goods">
+        <font>
+            <Font name="DIN Alternate Bold" size="13.0" />
+        </font>
+    </Button>
+
+    <Label fx:id="accountLabel" alignment="TOP_LEFT" layoutX="12.0" layoutY="4.0" prefHeight="86.0" prefWidth="138.0" style="-fx-background-color: #ffffff; -fx-padding: 10; -fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;" text="Balance: $" />
+
+</AnchorPane>
