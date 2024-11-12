@@ -5,13 +5,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="288.0" fx:controller="org.example.app.controllers.ReportController"
-            prefWidth="315.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1">
+            prefWidth="315.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1"
+            style="-fx-background-color: linear-gradient(to bottom, #e3f2fd, #81d4fa); -fx-padding: 20;">
+
     <Label layoutX="127.0" layoutY="14.0" text="Report">
         <font>
-          <Font name="DIN Alternate Bold" size="22.0"/>
+            <Font name="DIN Alternate Bold" size="22.0"/>
         </font>
     </Label>
-    <Button onAction="#onGetReportButtonClicked"  layoutX="122.0" layoutY="176.0" mnemonicParsing="false" text="download"/>
+
+    <Button onAction="#onGetReportButtonClicked" layoutX="122.0" layoutY="176.0" mnemonicParsing="false" text="Download"
+            style="-fx-background-color: linear-gradient(to right, #64b5f6, #42a5f5); -fx-text-fill: white; -fx-background-radius: 10; -fx-border-radius: 10; -fx-padding: 10;"/>
 </AnchorPane>

@@ -9,25 +9,43 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="389.0" prefWidth="587.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.app.controllers.ImportController">
-    <Label layoutX="56.0" layoutY="14.0" text="Import Products">
+<AnchorPane prefHeight="389.0" prefWidth="587.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.app.controllers.ImportController"
+            style="-fx-background-color: linear-gradient(to bottom, #e9f7ef, #e0f7fa); -fx-padding: 15;">
+
+    <Label layoutX="56.0" layoutY="14.0" text="Import Products" style="-fx-text-fill: #2e7d32; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 3, 0.3, 1, 1);">
         <font>
-          <Font name="DIN Alternate Bold" size="22.0" />
+            <Font name="DIN Alternate Bold" size="22.0" />
         </font>
     </Label>
-    <TextField fx:id="supplierField" layoutX="37.0" layoutY="95.0" prefHeight="26.0" prefWidth="186.0" promptText="Supplier" />
-    <DatePicker fx:id="datePicker" layoutX="37.0" layoutY="153.0" promptText="date of deal" />
-    <TableView fx:id="productTable" layoutX="276.0" layoutY="27.0" prefHeight="303.0" prefWidth="297.0">
+
+    <TextField fx:id="supplierField" layoutX="37.0" layoutY="95.0" prefHeight="26.0" prefWidth="186.0" promptText="Supplier"
+               style="-fx-background-color: #ffffff; -fx-border-color: #81c784; -fx-border-radius: 5; -fx-padding: 5;" />
+
+    <DatePicker fx:id="datePicker" layoutX="37.0" layoutY="153.0" promptText="date of deal"
+                style="-fx-background-color: #ffffff; -fx-border-color: #81c784; -fx-border-radius: 5; -fx-padding: 5;" />
+
+    <TableView fx:id="productTable" layoutX="276.0" layoutY="27.0" prefHeight="303.0" prefWidth="297.0"
+               style="-fx-background-color: #ffffff; -fx-border-color: #81c784; -fx-border-radius: 5;">
         <columns>
-          <TableColumn fx:id="titleColumn" prefWidth="75.0" text="Title" />
-          <TableColumn fx:id="categoryColumn" prefWidth="75.0" text="Category" />
-          <TableColumn fx:id="quantityColumn" prefWidth="68.0" text="Quantity" />
-          <TableColumn fx:id="priceColumn" prefWidth="82.0" text="Price" />
+            <TableColumn fx:id="titleColumn" prefWidth="75.0" text="Title" style="-fx-background-color: #4caf50; -fx-text-fill: #ffffff;" />
+            <TableColumn fx:id="categoryColumn" prefWidth="75.0" text="Category" style="-fx-background-color: #4caf50; -fx-text-fill: #ffffff;" />
+            <TableColumn fx:id="quantityColumn" prefWidth="68.0" text="Quantity" style="-fx-background-color: #4caf50; -fx-text-fill: #ffffff;" />
+            <TableColumn fx:id="priceColumn" prefWidth="82.0" text="Price" style="-fx-background-color: #4caf50; -fx-text-fill: #ffffff;" />
         </columns>
     </TableView>
-    <Button fx:id="addButton" layoutX="162.0" layoutY="215.0" mnemonicParsing="false"  text="add good" />
-    <Button fx:id="clearButton" layoutX="37.0" layoutY="216.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="77.0" text="clear table " />
-    <Button fx:id="sendButton" layoutX="162.0" layoutY="292.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="69.0" text="Send" />
-   <Label fx:id="sumLabel" layoutX="273.0" layoutY="331.0" prefHeight="17.0" prefWidth="297.0" />
-   <Button fx:id="backButton" layoutX="41.0" layoutY="292.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="69.0" text="↩️" />
+
+    <Button fx:id="addButton" layoutX="162.0" layoutY="215.0" mnemonicParsing="false" text="Add Good"
+            style="-fx-background-color: linear-gradient(to right, #66bb6a, #81c784); -fx-text-fill: #ffffff; -fx-background-radius: 10; -fx-border-radius: 10;" />
+
+    <Button fx:id="clearButton" layoutX="37.0" layoutY="216.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="77.0" text="Clear Table"
+            style="-fx-background-color: linear-gradient(to right, #ef5350, #e57373); -fx-text-fill: #ffffff; -fx-background-radius: 10; -fx-border-radius: 10;" />
+
+    <Button fx:id="sendButton" layoutX="162.0" layoutY="292.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="69.0" text="Send"
+            style="-fx-background-color: linear-gradient(to right, #42a5f5, #64b5f6); -fx-text-fill: #ffffff; -fx-background-radius: 10; -fx-border-radius: 10;" />
+
+    <Label fx:id="sumLabel" layoutX="273.0" layoutY="331.0" prefHeight="17.0" prefWidth="297.0"
+           style="-fx-background-color: #ffffff; -fx-padding: 5; -fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;" />
+
+    <Button fx:id="backButton" layoutX="41.0" layoutY="292.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="69.0" text="↩️"
+            style="-fx-background-color: linear-gradient(to right, #ffa726, #ffb74d); -fx-text-fill: #ffffff; -fx-background-radius: 10; -fx-border-radius: 10;" />
 </AnchorPane>
